@@ -91,7 +91,7 @@ template<typename T>
 Matrix<T>::Matrix(std::initializer_list<std::initializer_list<T>> values) noexcept
 : mHeight(values.size()) 
 {
-    if (mHeight == 0) { 
+    if (mHeight == 0) {
         return; 
     }
     mWidth = (*values.begin()).size();
@@ -221,14 +221,14 @@ std::ostream& operator<<(std::ostream& os, const Matrix<T>& mat) {
 }
 
 template<typename T>
-bool operator==(Matrix<T>& a, const Matrix<T>& b) {
+bool operator==(const Matrix<T>& a, const Matrix<T>& b) {
     if (a.w() != b.w() || a.h() != b.h()) {
         return false;
     }
 
     for (int i = 0; i < a.h(); i++) {
         for (int j = 0; j < a.w(); j++) {
-            if (a(j, i) = a(j, i) != b(j, i)) {
+            if (a(j, i) != b(j, i)) {
                 return false;
             }
         }
@@ -259,7 +259,7 @@ Matrix<T> operator+(Matrix<T> a, const Matrix<T>& b) {
 }
 
 template<typename T>
-Matrix<T>& operator-=(Matrix<T> a, const Matrix<T>& b) {
+Matrix<T>& operator-=(Matrix<T>& a, const Matrix<T>& b) {
     if (a.w() != b.w() || a.h() != b.h()) {
         throw std::runtime_error("Error: In Matrix addition: Trying to add different size of matrix together");
     }
